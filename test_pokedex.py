@@ -9,7 +9,8 @@ from pokedex_citron_db import (
     get_by_secondary_type,
     get_all_megas,
     get_all_regional_forms,
-    get_all_legendaries
+    get_all_legendaries,
+    get_by_generation
 )
 
 def print_section(title):
@@ -116,6 +117,33 @@ def test_get_all_legendaries():
     assert len(legendaries) == 105, f"Expected 105 legendary Pokémon, found {len(legendaries)}"
 
 
+def test_get_by_generation():
+    print_section("Testing get_by_generation()")
+    
+    # Test Generation 1
+    gen1 = get_by_generation(1)
+    print(f"\nGeneration 1 Pokémon ({len(gen1)}):")
+    print(f"  First 10: {', '.join(gen1[:10])}")
+    assert 'bulbasaur' in [p.lower() for p in gen1], "Bulbasaur should be in Generation 1"
+    assert 'pikachu' in [p.lower() for p in gen1], "Pikachu should be in Generation 1"
+    
+    # Test Generation 2
+    gen2 = get_by_generation(2)
+    print(f"\nGeneration 2 Pokémon ({len(gen2)}):")
+    print(f"  First 10: {', '.join(gen2[:10])}")
+    
+    # Test Generation 3
+    gen3 = get_by_generation(3)
+    print(f"\nGeneration 3 Pokémon ({len(gen3)}):")
+    print(f"  First 10: {', '.join(gen3[:10])}")
+    
+    # Test an empty/invalid generation
+    gen99 = get_by_generation(99)
+    print(f"\nGeneration 99 Pokémon ({len(gen99)}):")
+    print(f"  (Should be empty): {gen99}")
+    assert len(gen99) == 0, "Generation 99 should return an empty list"
+
+
 
 if __name__ == "__main__":
     print("\n" + "="*60)
@@ -130,6 +158,7 @@ if __name__ == "__main__":
         ("get_all_megas", test_get_all_megas),
         ("get_all_regional_forms", test_get_all_regional_forms),
         ("get_all_legendaries", test_get_all_legendaries),
+        ("get_by_generation", test_get_by_generation),
     ]
 
     passed = 0

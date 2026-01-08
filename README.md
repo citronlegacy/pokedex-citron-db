@@ -16,7 +16,8 @@ from pokedex_citron_db import (
     get_by_secondary_type,
     get_all_megas,
     get_all_regional_forms,
-    get_all_legendaries
+    get_all_legendaries,
+    get_by_generation
 )
 
 # Search for a Pokémon by name
@@ -35,6 +36,10 @@ flying_types = get_by_secondary_type("Flying")
 megas = get_all_megas()
 legendaries = get_all_legendaries()
 regional_forms = get_all_regional_forms()
+
+# Get Pokémon by generation
+gen1_pokemon = get_by_generation(1)
+gen2_pokemon = get_by_generation(2)
 ```
 
 ## API Reference
@@ -59,6 +64,9 @@ Returns a list of all Pokémon that have regional forms.
 
 ### `get_all_legendaries() -> list`
 Returns a list of all legendary Pokémon.
+
+### `get_by_generation(generation: int) -> list`
+Returns a list of Pokémon names from the specified generation number.
 
 ## Database Structure
 
